@@ -3,3 +3,4 @@
 .ipynb_checkpoints
 *.xlsx
 output
+*__pycache__*
