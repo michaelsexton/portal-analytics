@@ -1,0 +1,14 @@
+{
+  "layers" :
+  {
+    "mineral_occurrences":"Mineral Occurrences",
+    "mines":"Mines",
+    "mineral_tenements":"Mineral Tenements",
+    "scanned_250K_maps":"Scanned 250K Geological Map Index",
+    "nvcl":"National Virtual Core Library",
+    "all_boreholes":"All Boreholes"},
+  
+    "actions" : ["AddLayer","Query"],
+  
+    "spatial" : true
+}
