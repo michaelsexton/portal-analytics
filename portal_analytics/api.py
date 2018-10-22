@@ -2,6 +2,8 @@
 
 from oauth2client.service_account import ServiceAccountCredentials
 from apiclient.discovery import build
+from datetime import date
+from dateutil.relativedelta import relativedelta
 
 # TODO: Add paginatioon for when the number of results goes over 10000 limit
 
@@ -39,12 +41,20 @@ class AnalyticsApi:
 
   def get_results(self):
     id = self.get_profile_id()
-    # Use the Analytics Service Object to query the Core Reporting API
-    # for the number of sessions within the past seven days.
-    return self.service.data().ga().get(
-      ids='ga:' + id,
-      start_date='2016-10-01',
-      end_date='today',
-      metrics='ga:totalEvents',
-      max_results=10000,
-      dimensions='ga:eventCategory,ga:eventAction,ga:eventLabel').execute()
+    start_date = date(2017, 10, 1)
+
+    results = list()
+    while start_date < date.today():
+        end_date = start_date + relativedelta(months=1)
+
+        results.append(self.service.data().ga().get(
+                        ids='ga:' + id,
+                        start_date=start_date.isoformat(),
+                        end_date=end_date.isoformat(),
+                        metrics='ga:totalEvents',
+                        max_results=10000,
+                        dimensions='ga:eventCategory,ga:eventAction,ga:eventLabel').execute())
+        start_date = end_date + relativedelta(days = 1)
+    rows = [row for result in results for row in result["rows"]]
+    headers = [r.get('name') for r in results[0].get('columnHeaders')]
+    return rows, headers

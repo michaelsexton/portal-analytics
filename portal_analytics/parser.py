@@ -11,8 +11,8 @@ from json import JSONDecodeError
 
 SHAPE_FIELD='shape'
 
-def create_dataframe(results):
-  df = pd.DataFrame(results.get('rows'), columns=[r.get('name') for r in results.get('columnHeaders')])
+def create_dataframe(rows, headers):
+  df = pd.DataFrame(rows, columns=headers)
   return df
 
 
