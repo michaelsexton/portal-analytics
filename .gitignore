@@ -2,5 +2,7 @@
 .DS_Store
 .ipynb_checkpoints
 *.xlsx
-output
+output*
 *__pycache__*
+*.iml
+.idea
