@@ -125,7 +125,7 @@ def transform_bbox(bbox):
 def load_sql(table, keys, data):
     try:
         sql = "insert into {0} (layername, extent, qualifier) values ('{1}', ST_GeomFromText('{2}'), '{3}')".format(table, data["layerName"], data["extent"], data["qualifier"])
-        connection = psycopg2.connect("dbname='michael' user='postgres' host='127.0.0.1'")
+        connection = psycopg2.connect("dbname='postgres' user='postgres' host='127.0.0.1'")
         cursor = connection.cursor()
         cursor.execute(sql)
         connection.commit()
