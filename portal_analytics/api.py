@@ -41,7 +41,7 @@ class AnalyticsApi:
 
   def get_results(self):
     id = self.get_profile_id()
-    start_date = date(2018, 11, 29)
+    start_date = date(2018, 10, 1)
 
     end_date = date.today()
 
@@ -60,7 +60,7 @@ class AnalyticsApi:
                         filters = "ga:hostname==portal.geoscience.gov.au",
                         max_results=10000,
                         dimensions='ga:eventCategory,ga:eventAction,ga:eventLabel,ga:hostname').execute())
-        start_date = end_date + relativedelta(days = 1)
+        start_date = period_date + relativedelta(days = 1)
     rows = [row for result in results for row in result["rows"]]
     headers = [r.get('name') for r in results[0].get('columnHeaders')]
     return rows, headers
