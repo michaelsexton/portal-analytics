@@ -8,6 +8,7 @@ def create_tables():
         ( id serial,
           layername VARCHAR(256),
           extent geometry,
-          qualifier VARCHAR(2048));
+          qualifier VARCHAR(2048),
+          events integer);
       ''')
     conn.commit()
