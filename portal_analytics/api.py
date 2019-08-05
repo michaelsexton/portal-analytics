@@ -39,14 +39,9 @@ class AnalyticsApi:
 
 
 
-  def get_results(self):
+  def get_results(self, end_date = date.today()):
     id = self.get_profile_id()
-    start_date = date(2018, 10, 1)
-
-    end_date = date.today()
-
-    #end_date = date(2018, 11, 30)
-
+    start_date = end_date - relativedelta(years=1)
 
     results = list()
     while start_date < end_date:
